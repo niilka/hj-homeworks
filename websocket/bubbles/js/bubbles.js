@@ -1,4 +1,4 @@
-'use strinct';
+'use strict';
 
 function showBubbles(target) {
   if (!target || !(target instanceof WebSocket)) {
@@ -20,7 +20,7 @@ function showBubbles(target) {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 
-  window.addEventListener("resize", function() {
+  window.addEventListener("resize", function () {
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
     draw();
