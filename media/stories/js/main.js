@@ -41,7 +41,10 @@ class Stories {
     this.create = this.root.querySelector('.stories__slider__web-cam');
     this.create.addEventListener('click', () => {
       record(this)
-        .then(({ frame, video }) => {
+        .then(({
+          frame,
+          video
+        }) => {
           this.mode = 'sending';
           const fd = new FormData()
           fd.append('image', frame);
@@ -116,14 +119,15 @@ class Stories {
     });
 
     const ws = new WebSocket('wss://neto-api.herokuapp.com/stories');
-    ws.addEventListener('message', ({ data }) => {
+    ws.addEventListener('message', ({
+      data
+    }) => {
       const story = JSON.parse(data);
       if (localStorage.getItem(`story/${story.id}`) === 'seen') {
         return;
       }
       const item = node(
-        'li',
-        {
+        'li', {
           'data-id': story.id,
           'data-video': story.video,
           class: 'stories__slider__photo',
@@ -145,11 +149,13 @@ class Stories {
           }
         },
         node(
-          'div',
-          { class: 'stories--item_image' },
+          'div', {
+            class: 'stories--item_image'
+          },
           node(
-            'img',
-            { src: story.snapshot }
+            'img', {
+              src: story.snapshot
+            }
           )
         )
       );
@@ -166,7 +172,8 @@ class Stories {
       'recording',
       'error',
       'sending',
-      'sended'].includes(mode);
+      'sended'
+    ].includes(mode);
   }
 
   setModeTimeout(mode, timeout) {
